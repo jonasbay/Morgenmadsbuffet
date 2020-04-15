@@ -29,5 +29,4 @@ namespace Morgenmadsbuffet.Data
 
         }
     }
-    }
 }
