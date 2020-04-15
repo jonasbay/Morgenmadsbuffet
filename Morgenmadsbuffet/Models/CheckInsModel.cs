@@ -7,6 +7,7 @@ namespace Morgenmadsbuffet.Models
 {
     public class CheckInsModel
     {
+        public int CheckInId { get; set; }
         
         public int RoomId { get; set; }
         public string Date { get; set; }
