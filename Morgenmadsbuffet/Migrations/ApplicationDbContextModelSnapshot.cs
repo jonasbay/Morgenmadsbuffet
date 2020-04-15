@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Morgenmadsbuffet.Data;
 
-namespace Morgenmadsbuffet.Data.Migrations
+namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200415081744_init")]
-    partial class init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,7 +240,7 @@ namespace Morgenmadsbuffet.Data.Migrations
 
             modelBuilder.Entity("Morgenmadsbuffet.Models.CheckInsModel", b =>
                 {
-                    b.Property<int>("CheckInId")
+                    b.Property<int>("CheckInsModelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -259,7 +257,7 @@ namespace Morgenmadsbuffet.Data.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("CheckInId");
+                    b.HasKey("CheckInsModelId");
 
                     b.HasIndex("RoomId", "Date");
 

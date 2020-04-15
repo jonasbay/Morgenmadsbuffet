@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Morgenmadsbuffet.Data.Migrations
+namespace Morgenmadsbuffet.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class newModelsAndControllers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,11 +47,25 @@ namespace Morgenmadsbuffet.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BreakfastBookings",
+                columns: table => new
+                {
+                    RoomId = table.Column<int>(nullable: false),
+                    Date = table.Column<string>(nullable: false),
+                    AdultCount = table.Column<int>(nullable: false),
+                    ChildCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BreakfastBookings", x => new { x.RoomId, x.Date });
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +86,7 @@ namespace Morgenmadsbuffet.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +166,28 @@ namespace Morgenmadsbuffet.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CheckIns",
+                columns: table => new
+                {
+                    CheckInsModelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomId = table.Column<int>(nullable: false),
+                    Date = table.Column<string>(nullable: true),
+                    AdultCount = table.Column<int>(nullable: false),
+                    ChildCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CheckIns", x => x.CheckInsModelId);
+                    table.ForeignKey(
+                        name: "FK_CheckIns_BreakfastBookings_RoomId_Date",
+                        columns: x => new { x.RoomId, x.Date },
+                        principalTable: "BreakfastBookings",
+                        principalColumns: new[] { "RoomId", "Date" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +226,11 @@ namespace Morgenmadsbuffet.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CheckIns_RoomId_Date",
+                table: "CheckIns",
+                columns: new[] { "RoomId", "Date" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +251,16 @@ namespace Morgenmadsbuffet.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CheckIns");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "BreakfastBookings");
         }
     }
 }
