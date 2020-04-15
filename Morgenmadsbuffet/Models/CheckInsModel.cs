@@ -7,10 +7,14 @@ namespace Morgenmadsbuffet.Models
 {
     public class CheckInsModel
     {
-        // Keys
+        
         public int RoomId { get; set; }
         public string Date { get; set; }
+
+
         public int AdultCount { get; set; }
         public int ChildCount { get; set; }
+
+        public BreakfastBookingsModel BreakfastBookingsModels { get; set; }
     }
 }

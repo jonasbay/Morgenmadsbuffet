@@ -8,10 +8,14 @@ namespace Morgenmadsbuffet.Models
 {
     public class BreakfastBookingsModel
     {
-        // Keys
+        // Composite Key
         public int RoomId { get; set; }
         public string Date { get; set; }
+
         public int AdultCount { get; set; }
         public int ChildCount { get; set; }
+
+        // Navigational property
+        public List<CheckInsModel> CheckInsModelList { get; set; }
     }
 }
