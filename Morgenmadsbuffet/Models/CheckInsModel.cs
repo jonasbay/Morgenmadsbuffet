@@ -11,8 +11,7 @@ namespace Morgenmadsbuffet.Models
         public int CheckInsModelId { get; set; }
         public int RoomId { get; set; }
         public string Date { get; set; }
-
-
+        
         public int AdultCount { get; set; }
         public int ChildCount { get; set; }
 
