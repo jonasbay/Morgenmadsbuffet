@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Morgenmadsbuffet.Models;
 
 namespace Morgenmadsbuffet.Data
 {
@@ -12,5 +13,8 @@ namespace Morgenmadsbuffet.Data
             : base(options)
         {
         }
+
+        public DbSet<BreakfastBookingsModel> BreakfastBookings { get; set; }
+        public DbSet<CheckInsModel> CheckIns { get; set; }
     }
 }
