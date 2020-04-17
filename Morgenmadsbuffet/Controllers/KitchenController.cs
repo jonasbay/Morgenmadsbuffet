@@ -22,9 +22,11 @@ namespace Morgenmadsbuffet.Controllers
         // GET: Kitchen
         public async Task<IActionResult> Index(string date)
         {
-            var qBreakfast = await _context.BreakfastBookings.Where(b => b.Date == date).ToListAsync();
-
-            return View(qBreakfast);
+            var vm = new KitchenModel();
+            vm.BreakfastBookingsModels = await _context.BreakfastBookings.Where(b => b.Date == date).ToListAsync();
+            vm.CheckInsModels = await _context.CheckIns.Where(c => c.Date == date).ToListAsync();
+            
+            return View(vm);
         }
     }
 }
