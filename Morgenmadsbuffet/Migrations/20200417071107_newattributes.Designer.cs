@@ -10,8 +10,8 @@ using Morgenmadsbuffet.Data;
 namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200415091209_test")]
-    partial class test
+    [Migration("20200417071107_newattributes")]
+    partial class newattributes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,10 @@ namespace Morgenmadsbuffet.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -135,6 +139,8 @@ namespace Morgenmadsbuffet.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -223,11 +229,11 @@ namespace Morgenmadsbuffet.Migrations
 
             modelBuilder.Entity("Morgenmadsbuffet.Models.BreakfastBookingsModel", b =>
                 {
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AdultCount")
                         .HasColumnType("int");
@@ -235,7 +241,7 @@ namespace Morgenmadsbuffet.Migrations
                     b.Property<int>("ChildCount")
                         .HasColumnType("int");
 
-                    b.HasKey("Date", "RoomId");
+                    b.HasKey("RoomId", "Date");
 
                     b.ToTable("BreakfastBookings");
                 });
@@ -261,9 +267,23 @@ namespace Morgenmadsbuffet.Migrations
 
                     b.HasKey("CheckInsModelId");
 
-                    b.HasIndex("Date", "RoomId");
+                    b.HasIndex("RoomId", "Date");
 
                     b.ToTable("CheckIns");
+                });
+
+            modelBuilder.Entity("Morgenmadsbuffet.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Claim")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -321,7 +341,7 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     b.HasOne("Morgenmadsbuffet.Models.BreakfastBookingsModel", "BreakfastBookingsModels")
                         .WithMany("CheckInsModelList")
-                        .HasForeignKey("Date", "RoomId");
+                        .HasForeignKey("RoomId", "Date");
                 });
 #pragma warning restore 612, 618
         }

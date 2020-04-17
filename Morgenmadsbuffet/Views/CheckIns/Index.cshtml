@@ -3,12 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link href="~/css/site.css" rel="stylesheet" />
+<h2>Check In</h2>
+<p>Todays date: @DateTime.Now</p>
 
-<h1>Check In</h1>
-
-<p>
-    <button> <a asp-action="Create">Create New Check In</a></button>
-</p>
+<form asp-controller="CheckInsController">
+    <button><a asp-action="Create"> Create in new guests for breakfast</a></button>
+</form>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -29,23 +31,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdultCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChildCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BreakfastBookingsModels.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CheckInsModelId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CheckInsModelId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CheckInsModelId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BreakfastBookingsModels.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdultCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChildCount)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.CheckInsModelId">Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
