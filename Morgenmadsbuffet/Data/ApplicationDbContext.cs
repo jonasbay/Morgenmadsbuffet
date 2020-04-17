@@ -22,12 +22,12 @@ namespace Morgenmadsbuffet.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<BreakfastBookingsModel>()
-                .HasKey(b => new {b.RoomId, b.Date});
+                .HasKey(b => new {b.RoomId, b.Date });
 
             modelBuilder.Entity<CheckInsModel>()
                 .HasOne<BreakfastBookingsModel>(c => c.BreakfastBookingsModels)
                 .WithMany(b => b.CheckInsModelList)
-                .HasForeignKey(c => new {c.RoomId, c.Date});
+                .HasForeignKey(c => new {c.RoomId, c.Date });
         }
     }
 }
