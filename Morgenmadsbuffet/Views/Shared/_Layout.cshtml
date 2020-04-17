@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+    <header >
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Morgenmadsbuffet</a>
@@ -31,6 +31,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="CheckIns" asp-action="Index">Check In</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Kitchen" asp-action="Index">Kitchen</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -43,8 +46,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Morgenmadsbuffet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container whiteText">
+            &copy; 2020 - Morgenmadsbuffet - <a class="whiteText" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

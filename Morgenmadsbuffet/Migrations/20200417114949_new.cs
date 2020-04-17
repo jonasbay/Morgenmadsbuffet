@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Morgenmadsbuffet.Migrations
 {
-    public partial class newattributes : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,7 @@ namespace Morgenmadsbuffet.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Claim = table.Column<string>(nullable: true)
+                    ClaimType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,14 +53,16 @@ namespace Morgenmadsbuffet.Migrations
                 name: "BreakfastBookings",
                 columns: table => new
                 {
+                    BreakfastBookingsModelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoomId = table.Column<int>(nullable: false),
-                    Date = table.Column<string>(nullable: false),
+                    Date = table.Column<string>(nullable: true),
                     AdultCount = table.Column<int>(nullable: false),
                     ChildCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BreakfastBookings", x => new { x.RoomId, x.Date });
+                    table.PrimaryKey("PK_BreakfastBookings", x => x.BreakfastBookingsModelId);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,8 +175,7 @@ namespace Morgenmadsbuffet.Migrations
                 name: "CheckIns",
                 columns: table => new
                 {
-                    CheckInsModelId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CheckInsModelId = table.Column<int>(nullable: false),
                     RoomId = table.Column<int>(nullable: false),
                     Date = table.Column<string>(nullable: true),
                     AdultCount = table.Column<int>(nullable: false),
@@ -184,11 +185,11 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     table.PrimaryKey("PK_CheckIns", x => x.CheckInsModelId);
                     table.ForeignKey(
-                        name: "FK_CheckIns_BreakfastBookings_RoomId_Date",
-                        columns: x => new { x.RoomId, x.Date },
+                        name: "FK_CheckIns_BreakfastBookings_CheckInsModelId",
+                        column: x => x.CheckInsModelId,
                         principalTable: "BreakfastBookings",
-                        principalColumns: new[] { "RoomId", "Date" },
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "BreakfastBookingsModelId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -229,11 +230,6 @@ namespace Morgenmadsbuffet.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CheckIns_RoomId_Date",
-                table: "CheckIns",
-                columns: new[] { "RoomId", "Date" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,8 +10,8 @@ using Morgenmadsbuffet.Data;
 namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200417074322_admin")]
-    partial class admin
+    [Migration("20200417114949_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,26 +229,7 @@ namespace Morgenmadsbuffet.Migrations
 
             modelBuilder.Entity("Morgenmadsbuffet.Models.BreakfastBookingsModel", b =>
                 {
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AdultCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChildCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoomId", "Date");
-
-                    b.ToTable("BreakfastBookings");
-                });
-
-            modelBuilder.Entity("Morgenmadsbuffet.Models.CheckInsModel", b =>
-                {
-                    b.Property<int>("CheckInsModelId")
+                    b.Property<int>("BreakfastBookingsModelId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -260,14 +241,34 @@ namespace Morgenmadsbuffet.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Date")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BreakfastBookingsModelId");
+
+                    b.ToTable("BreakfastBookings");
+                });
+
+            modelBuilder.Entity("Morgenmadsbuffet.Models.CheckInsModel", b =>
+                {
+                    b.Property<int>("CheckInsModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdultCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChildCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
                     b.HasKey("CheckInsModelId");
-
-                    b.HasIndex("RoomId", "Date");
 
                     b.ToTable("CheckIns");
                 });
@@ -341,7 +342,9 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     b.HasOne("Morgenmadsbuffet.Models.BreakfastBookingsModel", "BreakfastBookingsModels")
                         .WithMany("CheckInsModelList")
-                        .HasForeignKey("RoomId", "Date");
+                        .HasForeignKey("CheckInsModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
