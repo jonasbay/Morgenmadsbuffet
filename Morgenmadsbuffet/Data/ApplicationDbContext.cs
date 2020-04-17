@@ -25,7 +25,7 @@ namespace Morgenmadsbuffet.Data
                 .HasKey(b => new {b.RoomId, b.Date});
 
             modelBuilder.Entity<CheckInsModel>()
-                .HasOne<BreakfastBookingsModel>(c => c.BreakfastBookingsModels)
+                .HasOne(c => c.BreakfastBookingsModels)
                 .WithMany(b => b.CheckInsModelList)
                 .HasForeignKey(c => new {c.RoomId, c.Date});
         }
