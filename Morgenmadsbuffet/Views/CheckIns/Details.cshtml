@@ -4,23 +4,22 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h2>Details on check in</h2>
 
 <div>
-    <h4>CheckInsModel</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RoomId)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoomId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AdultCount)
@@ -38,5 +37,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.CheckInsModelId">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.CheckInsModelId">Delete</a> |
     <a asp-action="Index">Back to List</a>
 </div>
