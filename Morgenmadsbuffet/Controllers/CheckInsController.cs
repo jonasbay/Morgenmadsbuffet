@@ -50,7 +50,8 @@ namespace Morgenmadsbuffet.Controllers
         // GET: CheckIns/Create
         public IActionResult Create()
         {
-            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "Date");
+            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "RoomId");
+            ViewData["Date"] = new SelectList(_context.BreakfastBookings, "Date", "Date");
             return View();
         }
 
@@ -67,7 +68,8 @@ namespace Morgenmadsbuffet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "Date", checkInsModel.RoomId);
+            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", checkInsModel.RoomId.ToString());
+            ViewData["Date"] = new SelectList(_context.BreakfastBookings, "Date", checkInsModel.Date);
             return View(checkInsModel);
         }
 

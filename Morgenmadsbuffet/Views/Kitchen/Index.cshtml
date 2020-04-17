@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BreakfastBookingsModel>
+﻿@model KitchenModel
 
 @{
     ViewData["Title"] = "Kitchen";
@@ -10,19 +10,28 @@
 
 <div id="inputbar">
     <form asp-controller="Kitchen" asp-action="Index">
-        <input type="date" placeholder="Show date" name="date" />
+        <input type="search" placeholder="Enter date" name="date" />
     </form>
 </div>
 <div id="resultBox">
 
     @{
-        int nAdults = 0, nChildren = 0;
-        foreach (var booking in Model)
+        int nAdultsBooked = 0, nChildrenBooked = 0, nAdultsCheckedIn = 0, nChildrenCheckedIn = 0;
+        foreach (var booking in Model.BreakfastBookingsModels)
         {
-            nAdults += booking.AdultCount;
-            nChildren += booking.ChildCount;
+            nAdultsBooked += booking.AdultCount;
+            nChildrenBooked += booking.ChildCount;
+        }
+        foreach (var checkin in Model.CheckInsModels)
+        {
+            nAdultsCheckedIn += checkin.AdultCount;
+            nChildrenCheckedIn += checkin.ChildCount;
         }
 
-        <p>Today has @nAdults adults and @nChildren children booked for the breakfast buffet</p>
+        int adultsRemaining = nAdultsBooked - nAdultsCheckedIn;
+        int childrenRemaining = nChildrenBooked - nChildrenCheckedIn;
+
+        <p>Today has @nAdultsBooked adults and @nChildrenBooked children booked for the breakfast buffet.</p>
+        <p>@nAdultsCheckedIn and @nChildrenCheckedIn has arrived at the breakfast. Still waiting for the last @adultsRemaining adults and @childrenRemaining children.</p>
     }
 </div>
