@@ -16,6 +16,7 @@ namespace Morgenmadsbuffet.Data
 
         public DbSet<BreakfastBookingsModel> BreakfastBookings { get; set; }
         public DbSet<CheckInsModel> CheckIns { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
