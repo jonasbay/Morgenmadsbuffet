@@ -9,7 +9,10 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #000;
+}
+a:hover{
+    color: #000;
 }
 
 .btn-primary {
@@ -18,12 +21,21 @@ a {
     border-color: #1861ac;
 }
 
+/*.header {
+    background-color: #21B2AA;
+}*/
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #1b6ec2;
+    background-color: #606060;
     border-color: #1861ac;
 }
+.navbar {
+    background-color: #606060!important;
+}
+    .navbar a {
+        color: white!important;
+    }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -64,35 +76,27 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    background-color: #606060;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
 }
 
 button {
-    background-color: darkcyan;
+    background-color: #90CFCE;
     border: none;
-    color: white;
-    padding: 15px 32px;
+    color: white !important;
+    padding: 7px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
-#CheckIn {
-    width: 100%;
-
+.whiteText {
+    color: white;
 }
-    #CheckIn th, #CheckIn td {
-        border-bottom: 1px solid #ddd;
-        padding: 15px;
-        text-align: left;
-    }
 
-    #CheckIn tr:nth-child(even) {
-        background-color: blue;
-    }
