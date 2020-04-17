@@ -1,7 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<BreakfastBookingsModel>
+
+@{
+    ViewData["Title"] = "Kitchen";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Lol</h1>
+    <h1 class="display-4">Kitchen</h1>
+</div>
+
+<div id="inputbar">
+    <form asp-controller="Kitchen" asp-action="Index">
+        <input type="search" placeholder="Show date" name="date" />
+    </form>
+</div>
+<div id="resultBox">
+
+    @{
+        int nAdults = 0, nChildren = 0;
+        foreach (var booking in Model)
+        {
+            nAdults += booking.AdultCount;
+            nChildren += booking.ChildCount;
+        }
+
+        <p>Today has @nAdults adults and @nChildren children booked for the breakfast buffet</p>
+    }
 </div>
