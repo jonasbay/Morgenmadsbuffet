@@ -9,5 +9,6 @@ namespace Morgenmadsbuffet.Data
 {
     public class DbHelper
     {
+
     }
 }
