@@ -4,50 +4,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Check In</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <button> <a asp-action="Create">Create New Check In</a></button>
 </p>
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RoomId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdultCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChildCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BreakfastBookingsModels)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Room no.
+            </th>
+            <th>
+                Adults
+            </th>
+            <th>
+                Children
+            </th>
+
+            <th></th>
+        </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdultCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BreakfastBookingsModels.Date)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.CheckInsModelId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.CheckInsModelId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.CheckInsModelId">Delete</a>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdultCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BreakfastBookingsModels.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CheckInsModelId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CheckInsModelId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CheckInsModelId">Delete</a>
+            </td>
+        </tr>
 }
     </tbody>
 </table>
