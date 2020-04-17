@@ -8,12 +8,10 @@
     <h1 class="display-4">Kitchen</h1>
 </div>
 
-<div id="inputbar">
+<div id="Kitchenbox">
     <form asp-controller="Kitchen" asp-action="Index">
         <input type="search" placeholder="Enter date" name="date" />
     </form>
-</div>
-<div id="resultBox">
 
     @{
         int nAdultsBooked = 0, nChildrenBooked = 0, nAdultsCheckedIn = 0, nChildrenCheckedIn = 0;
