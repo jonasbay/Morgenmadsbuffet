@@ -10,8 +10,8 @@ using Morgenmadsbuffet.Data;
 namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200417114949_new")]
-    partial class @new
+    [Migration("20200419120633_claimstest")]
+    partial class claimstest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,7 +254,9 @@ namespace Morgenmadsbuffet.Migrations
             modelBuilder.Entity("Morgenmadsbuffet.Models.CheckInsModel", b =>
                 {
                     b.Property<int>("CheckInsModelId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AdultCount")
                         .HasColumnType("int");
@@ -269,6 +271,8 @@ namespace Morgenmadsbuffet.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CheckInsModelId");
+
+                    b.HasIndex("RoomId");
 
                     b.ToTable("CheckIns");
                 });
@@ -342,7 +346,7 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     b.HasOne("Morgenmadsbuffet.Models.BreakfastBookingsModel", "BreakfastBookingsModels")
                         .WithMany("CheckInsModelList")
-                        .HasForeignKey("CheckInsModelId")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

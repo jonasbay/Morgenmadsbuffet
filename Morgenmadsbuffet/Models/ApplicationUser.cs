@@ -12,6 +12,7 @@ namespace Morgenmadsbuffet.Models
         [Required]
         [PersonalData]
         public string Name { get; set; }
+
         [PersonalData]
         public string ClaimType { get; set; }
     }

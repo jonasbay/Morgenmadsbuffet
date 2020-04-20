@@ -8,7 +8,6 @@ namespace Morgenmadsbuffet.Models
 {
     public class BreakfastBookingsModel
     {
-        // Composite Key
         public int BreakfastBookingsModelId { get; set; }
         public int RoomId { get; set; }
         public string Date { get; set; }

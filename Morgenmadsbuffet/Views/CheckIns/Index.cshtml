@@ -7,7 +7,7 @@
 <h2>Check In</h2>
 <p>Todays date: @DateTime.Now</p>
 
-<form asp-controller="CheckInsController">
+<form asp-controller="CheckIns">
     <button><a asp-action="Create"> Create in new guests for breakfast</a></button>
 </form>
 <br />
@@ -18,15 +18,14 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                Room no.
+                @Html.DisplayNameFor(model => model.RoomId)
             </th>
             <th>
-                Adults
+                @Html.DisplayNameFor(model => model.AdultCount)
             </th>
             <th>
-                Children
+                @Html.DisplayNameFor(model => model.ChildCount)
             </th>
-
             <th></th>
         </tr>
     </thead>
@@ -35,7 +34,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BreakfastBookingsModels.Date)
+                    @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RoomId)

@@ -86,7 +86,10 @@ namespace Morgenmadsbuffet.Controllers
             {
                 return NotFound();
             }
-            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "Date", checkInsModel.RoomId);
+            ViewData["RoomId"] = new SelectList(_context.CheckIns, "RoomId", checkInsModel.RoomId.ToString());
+            ViewData["Date"] = new SelectList(_context.CheckIns, "Date", checkInsModel.Date);
+            //ViewBag.RoomId = new SelectList(_context.BreakfastBookings, "RoomId", checkInsModel.RoomId.ToString());
+            //ViewBag.Date = new SelectList(_context.BreakfastBookings, "Date", checkInsModel.Date);
             return View(checkInsModel);
         }
 
@@ -122,7 +125,10 @@ namespace Morgenmadsbuffet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "Date", checkInsModel.RoomId);
+            ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", checkInsModel.RoomId.ToString());
+            ViewData["Date"] = new SelectList(_context.BreakfastBookings, "Date", checkInsModel.Date);
+            //ViewBag.RoomId = new SelectList(_context.BreakfastBookings, "RoomId", checkInsModel.RoomId.ToString());
+            //ViewBag.Date = new SelectList(_context.BreakfastBookings, "Date", checkInsModel.Date);
             return View(checkInsModel);
         }
 

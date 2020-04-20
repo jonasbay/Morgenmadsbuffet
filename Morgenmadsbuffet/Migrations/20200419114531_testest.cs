@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Morgenmadsbuffet.Migrations
 {
-    public partial class @new : Migration
+    public partial class testest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -175,7 +175,8 @@ namespace Morgenmadsbuffet.Migrations
                 name: "CheckIns",
                 columns: table => new
                 {
-                    CheckInsModelId = table.Column<int>(nullable: false),
+                    CheckInsModelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoomId = table.Column<int>(nullable: false),
                     Date = table.Column<string>(nullable: true),
                     AdultCount = table.Column<int>(nullable: false),
@@ -185,8 +186,8 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     table.PrimaryKey("PK_CheckIns", x => x.CheckInsModelId);
                     table.ForeignKey(
-                        name: "FK_CheckIns_BreakfastBookings_CheckInsModelId",
-                        column: x => x.CheckInsModelId,
+                        name: "FK_CheckIns_BreakfastBookings_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "BreakfastBookings",
                         principalColumn: "BreakfastBookingsModelId",
                         onDelete: ReferentialAction.Cascade);
@@ -230,6 +231,11 @@ namespace Morgenmadsbuffet.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CheckIns_RoomId",
+                table: "CheckIns",
+                column: "RoomId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

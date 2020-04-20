@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Morgenmadsbuffet.Data;
 
 namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200419114531_testest")]
+    partial class testest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,9 +261,6 @@ namespace Morgenmadsbuffet.Migrations
                     b.Property<int>("AdultCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BreakfastBookingsModelsBreakfastBookingsModelId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ChildCount")
                         .HasColumnType("int");
 
@@ -273,7 +272,7 @@ namespace Morgenmadsbuffet.Migrations
 
                     b.HasKey("CheckInsModelId");
 
-                    b.HasIndex("BreakfastBookingsModelsBreakfastBookingsModelId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("CheckIns");
                 });
@@ -347,7 +346,9 @@ namespace Morgenmadsbuffet.Migrations
                 {
                     b.HasOne("Morgenmadsbuffet.Models.BreakfastBookingsModel", "BreakfastBookingsModels")
                         .WithMany("CheckInsModelList")
-                        .HasForeignKey("BreakfastBookingsModelsBreakfastBookingsModelId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

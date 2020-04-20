@@ -22,11 +22,10 @@ namespace Morgenmadsbuffet.Data
         {
             base.OnModelCreating(modelBuilder);
 
-
-            modelBuilder.Entity<CheckInsModel>()
-                .HasOne(c => c.BreakfastBookingsModels)
-                .WithMany(b => b.CheckInsModelList)
-                .HasForeignKey(c => c.CheckInsModelId);
+            //modelBuilder.Entity<CheckInsModel>()
+            //    .HasOne(c => c.BreakfastBookingsModels)
+            //    .WithMany(b => b.CheckInsModelList)
+            //    .HasForeignKey(c => c.BreakfastBookingsModelId); // <<- Lavet denne om til RoomID i stedet for CheckInsModelsId
         }
     }
 }

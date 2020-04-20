@@ -39,7 +39,6 @@ namespace Morgenmadsbuffet.Areas.Identity.Pages.Account
             _emailSender = emailSender;
 
             AllClaimTypes = new List<SelectListItem>();
-            AllClaimTypes.Add(new SelectListItem() { Text = "Admin", Value = "Admin" });
             AllClaimTypes.Add(new SelectListItem() { Text = "Receptionist", Value = "Receptionist" });
             AllClaimTypes.Add(new SelectListItem() { Text = "Restaurant", Value = "Restaurant" });
             AllClaimTypes.Add(new SelectListItem() { Text = "Kitchen", Value = "Kitchen" });

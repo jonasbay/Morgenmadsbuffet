@@ -12,6 +12,7 @@ using Morgenmadsbuffet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Morgenmadsbuffet.Models;
 
 namespace Morgenmadsbuffet
@@ -58,8 +59,10 @@ namespace Morgenmadsbuffet
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, ApplicationDbContext context,
+            ILogger<Startup> log)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,6 +81,8 @@ namespace Morgenmadsbuffet
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            DbHelper.SeedData(context, userManager, log);
 
             app.UseEndpoints(endpoints =>
             {
