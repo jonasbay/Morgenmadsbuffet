@@ -9,5 +9,6 @@ namespace Morgenmadsbuffet.Models
     {
         public List<BreakfastBookingsModel> BreakfastBookingsModels { get; set; }
         public List<CheckInsModel> CheckInsModels { get; set; }
+        public List<String> Dates { get; set; }
     }
 }

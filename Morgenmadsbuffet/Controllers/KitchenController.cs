@@ -25,8 +25,10 @@ namespace Morgenmadsbuffet.Controllers
         public async Task<IActionResult> Index(string date)
         {
             var vm = new KitchenModel();
+
             vm.BreakfastBookingsModels = await _context.BreakfastBookings.Where(b => b.Date == date).ToListAsync();
             vm.CheckInsModels = await _context.CheckIns.Where(c => c.Date == date).ToListAsync();
+            
             
             return View(vm);
         }
