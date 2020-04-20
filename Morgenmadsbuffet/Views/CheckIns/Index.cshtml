@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Morgenmadsbuffet.Models.CheckInsModel>
+﻿@using System.Security.Claims
+@model IEnumerable<Morgenmadsbuffet.Models.CheckInsModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +9,8 @@
 <p>Todays date: @DateTime.Now</p>
 
 <form asp-controller="CheckIns">
-    <button><a asp-action="Create"> Create in new guests for breakfast</a></button>
+    <button><a asp-action="Create">Check in guests for breakfast</a></button>
+    <label>check in only availible for restuarant</label>
 </form>
 <br />
 <table class="table">

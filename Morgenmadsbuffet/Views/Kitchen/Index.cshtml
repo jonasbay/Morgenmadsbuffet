@@ -28,8 +28,16 @@
 
         int adultsRemaining = nAdultsBooked - nAdultsCheckedIn;
         int childrenRemaining = nChildrenBooked - nChildrenCheckedIn;
+        int totalGuest = nAdultsBooked + nChildrenBooked;
+        int totalArrived = nAdultsCheckedIn + nChildrenCheckedIn;
+        int totalRemaining = childrenRemaining + adultsRemaining;
 
-        <p>Today has @nAdultsBooked adults and @nChildrenBooked children booked for the breakfast buffet.</p>
-        <p>@nAdultsCheckedIn and @nChildrenCheckedIn has arrived at the breakfast. Still waiting for the last @adultsRemaining adults and @childrenRemaining children.</p>
+        <br />
+        <p>Guests booked for breakfast: @totalGuest</p>
+        <p>Adults: @nAdultsBooked, Children: @nChildrenBooked</p><br />
+        <p>Total guests checked in: @totalArrived</p>
+        <p>Adults: @nAdultsCheckedIn, Children: @nChildrenCheckedIn</p><br />
+        <p>Total remaining: @totalRemaining</p>
+        <p>Adults: @adultsRemaining, Children: @childrenRemaining</p>
     }
 </div>

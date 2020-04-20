@@ -21,7 +21,7 @@ namespace Morgenmadsbuffet.Controllers
         }
 
         // GET: CheckIns
-        [Authorize("IsRestaurant")]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.CheckIns.Include(c => c.BreakfastBookingsModels);
@@ -48,6 +48,7 @@ namespace Morgenmadsbuffet.Controllers
         }
 
         // GET: CheckIns/Create
+        [Authorize("IsRestaurant")]
         public IActionResult Create()
         {
             ViewData["RoomId"] = new SelectList(_context.BreakfastBookings, "RoomId", "RoomId");
