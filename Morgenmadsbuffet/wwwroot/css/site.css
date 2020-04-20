@@ -100,9 +100,10 @@ button {
     color: white;
 }
 
-    #CheckIn tr:nth-child(even) {
-        background-color: blue;
-    }
+#CheckIn tr:nth-child(even) {
+    background-color: blue;
+}
+
 #Kitchenbox {
     text-align: center;
 }
