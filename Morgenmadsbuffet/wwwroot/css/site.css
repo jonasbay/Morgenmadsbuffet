@@ -97,7 +97,7 @@ button {
 }
 
 .whiteText {
-    color: white;
+    color: white !important;
 }
 
 #CheckIn tr:nth-child(even) {
